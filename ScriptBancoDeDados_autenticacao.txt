@@ -1,6 +1,8 @@
+-- Criação do banco de dados se não existir
 CREATE DATABASE IF NOT EXISTS autenticacao;
 USE autenticacao;
 
+-- Criação da tabela `usuarios`
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -8,6 +10,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
     verificado TINYINT(1) DEFAULT 0
 );
 
+-- Criação da tabela `codigos_verificacao`
 CREATE TABLE IF NOT EXISTS codigos_verificacao (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,
@@ -16,6 +19,7 @@ CREATE TABLE IF NOT EXISTS codigos_verificacao (
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
+-- Criação da tabela `codigos_redefinicao`
 CREATE TABLE IF NOT EXISTS codigos_redefinicao (
     usuario_id INT PRIMARY KEY,
     codigo VARCHAR(6),
@@ -23,6 +27,7 @@ CREATE TABLE IF NOT EXISTS codigos_redefinicao (
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
+-- Criação da tabela `questoes` com a coluna `assunto`
 CREATE TABLE IF NOT EXISTS questoes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     enunciado TEXT NOT NULL,
@@ -31,9 +36,11 @@ CREATE TABLE IF NOT EXISTS questoes (
     alternativa3 VARCHAR(255) NOT NULL,
     alternativa4 VARCHAR(255) NOT NULL,
     alternativa5 VARCHAR(255) NOT NULL,
-    alternativa_correta INT NOT NULL
+    alternativa_correta INT NOT NULL,
+    assunto VARCHAR(100) NOT NULL
 );
 
+-- Inserção de dados na tabela `questoes`
 INSERT INTO `questoes` (`id`, `enunciado`, `alternativa1`, `alternativa2`, `alternativa3`, `alternativa4`, `alternativa5`, `alternativa_correta`, `assunto`) VALUES
 (1, 'Qual das operações de CRUD é usada para adicionar um novo registro ao banco de dados?', 'Atualizar', 'Excluir', 'Ler', 'Criar', 'Modificar', 4, 'PHP - CRUD'),
 (2, 'Em um sistema CRUD, qual operação permite visualizar dados armazenados sem alterá-los?', 'Atualizar', 'Ler', 'Excluir', 'Criar', 'Modificar', 2, 'PHP - CRUD'),
