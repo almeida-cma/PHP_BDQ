@@ -14,7 +14,7 @@ function enviarCodigoEmail($destinatario, $codigo) {
         $mail->Host = 'smtp.gmail.com'; 
         $mail->SMTPAuth = true;
       		
-		$mail->Username = 'Seu@gmail.com'; //Preencher com e-mail para envio
+	$mail->Username = 'Seu@gmail.com'; //Preencher com e-mail para envio
         $mail->Password = '---- ---- ---- ----'; //Preencher a senha do app
 		
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
